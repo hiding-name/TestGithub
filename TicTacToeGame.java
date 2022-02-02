@@ -170,9 +170,8 @@ public class TicTacToeGame {
   	*/
 	public CellValue valueAt(int i) {
 		// your code here
-		int boardSize = lines * columns;
-		if (i < 1 || i > boardSize) {
-			System.out.println("The value should be between 1 and " + boardSize);
+		if (i < 1 || i > board.length) {
+			System.out.println("The value should be between 1 and " + board.length);
 			return null;
 		} else if (board[i] != CellValue.EMPTY) {
 			System.out.println("This cell has already been played");
@@ -262,7 +261,7 @@ public class TicTacToeGame {
 			visualBoard += element;
 			if ((x+1) % lines != 0) {
 				visualBoard += " | ";
-			} else {
+			} else if ((x+1) % lines == 0 && (x+1) != board.length) {
 				visualBoard += NEW_LINE;
 				visualBoard += "-----------";
 			}
