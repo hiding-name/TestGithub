@@ -55,6 +55,7 @@ public class TicTacToeGame {
 		lines = 3;
 		columns = 3;
 		sizeWin = 3;
+		board = new CellValue[lines*columns];
 	}
 
    /**
@@ -71,6 +72,7 @@ public class TicTacToeGame {
 		this.lines = lines;
 		this.columns = columns;
 		sizeWin = 3;
+		board = new CellValue[lines*columns];
 	}
 
    /**
@@ -89,6 +91,7 @@ public class TicTacToeGame {
 		this.lines = lines;
 		this.columns = columns;
 		this.sizeWin = sizeWin;
+		board = new CellValue[lines*columns];
 	}
 
 
