@@ -115,7 +115,7 @@ public class TicTacToeGame {
 	* 	the value of level
 	*/
 	public int getLevel(){
-		return(Level);
+		return(level);
 	}
 
 
