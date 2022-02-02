@@ -90,7 +90,7 @@ public class TicTacToeGame {
 	* 	the value of lines
 	*/
 	public int getLines(){
-		return(lines);
+		// your code here
 	}
 
    /**
@@ -99,7 +99,7 @@ public class TicTacToeGame {
 	* 	the value of columns
 	*/
 	public int getColumns(){
-		return(columns);
+		// your code here
 	}
 
    /**
@@ -108,7 +108,7 @@ public class TicTacToeGame {
 	* 	the value of level
 	*/
 	public int getLevel(){
-		return(Level);
+		// your code here
 	}
 
 
@@ -118,7 +118,7 @@ public class TicTacToeGame {
 	* 	the value of gameState
 	*/
 	public GameState getGameState(){
-		return(gameState);
+		// your code here
 	}
 
    /**
@@ -127,9 +127,8 @@ public class TicTacToeGame {
 	* 	the value of sizeWin
 	*/
 	public int getSizeWin(){
-		return (sizeWin);
+		// your code here
 	}
-
 
    /**
 	* returns the cellValue that is expected next,
