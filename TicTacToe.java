@@ -36,7 +36,7 @@ public class TicTacToe{
                 columns = 3;
             }
         }
-        if (args.length = 3){
+        if (args.length == 3){
 			// The third argument will be ignored and 3 will be used
 			win=3; //for simplcity, we will only consider the case of 3 cells to win
         } 
