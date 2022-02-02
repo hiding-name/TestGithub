@@ -241,23 +241,30 @@ public class TicTacToeGame {
 	public String toString(){
 		// your code here
 		// use NEW_LINE defined above rather than \n
-		char element;
+		String element;
+		String visualBoard = "";
 
 		for (int x=0;x<board.length;x++) {
 			switch (board[x]) {
 				case X:
-					element = 'X';
+					element = "X";
 					break;
 				case O:
-					element = 'O';
+					element = "O";
 					break;
 				default:
-					element = ' ';
+					element = " ";
 					break;
-
+			}
+			visualBoard += element;
+			if ((x+1) % lines != 0) {
+				visualBoard += " | ";
+			} else {
+				visualBoard += NEW_LINE;
+				visualBoard += "-----------";
 			}
 		}
-
+		return visualBoard;
 	}
 
 }
