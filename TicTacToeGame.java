@@ -54,6 +54,7 @@ public class TicTacToeGame {
 		// your code here
 		lines = 3;
 		columns = 3;
+		sizeWin = 3;
 	}
 
    /**
@@ -69,6 +70,7 @@ public class TicTacToeGame {
 		// your code here
 		this.lines = lines;
 		this.columns = columns;
+		sizeWin = 3;
 	}
 
    /**
