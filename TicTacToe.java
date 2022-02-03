@@ -50,7 +50,10 @@ public class TicTacToe{
         while(game.getGameState() == GameState.PLAYING) {
         	
 			// your code here
-			
+			System.out.println(game);
+            int input = Integer.parseInt(console.readLine("X to play: "));
+            game.play(input);
+
 			
         }
         System.out.println(game);

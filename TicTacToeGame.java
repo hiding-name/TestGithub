@@ -56,6 +56,7 @@ public class TicTacToeGame {
 		columns = 3;
 		sizeWin = 3;
 		board = new CellValue[lines*columns];
+		resetBoard(board);
 		gameState = GameState.PLAYING;
 	}
 
@@ -74,6 +75,7 @@ public class TicTacToeGame {
 		this.columns = columns;
 		sizeWin = 3;
 		board = new CellValue[lines*columns];
+		resetBoard(board);
 		gameState = GameState.PLAYING;
 	}
 
@@ -94,6 +96,7 @@ public class TicTacToeGame {
 		this.columns = columns;
 		this.sizeWin = sizeWin;
 		board = new CellValue[lines*columns];
+		resetBoard(board);
 		gameState = GameState.PLAYING;
 	}
 
@@ -209,8 +212,18 @@ public class TicTacToeGame {
 	public void play(int i) {
 
 		// your code here
-		board[i] = valueAt(i);
-
+		if (i < 1 || i > board.length) {
+			System.out.println("The value should be between 1 and " + board.length);
+		} else if (valueAt(i) != CellValue.EMPTY) {
+			System.out.println("This cell has already been played");
+		} else {
+			if (getLevel() % 2 == 0) {
+				board[i] = CellValue.X;
+			} else {
+				board[i] = CellValue.O;
+			}
+			
+		}
 	}
 
 
@@ -236,6 +249,18 @@ public class TicTacToeGame {
 
 	}
 
+	/**
+	* A helper method which sets the board to all EMPTY
+	* @param board
+	* : Array holding the value of each position in a board
+  	*/
+
+	private static void resetBoard(CellValue[] board) {
+		for (int i=0;i<board.length;i++){
+			board[i] = CellValue.EMPTY;
+		}
+	}
+
 
 
 	final String NEW_LINE = System.getProperty("line.separator");
@@ -258,21 +283,20 @@ public class TicTacToeGame {
 		for (int x=0;x<board.length;x++) {
 			switch (board[x]) {
 				case X:
-					element = "X";
+					element = " X ";
 					break;
 				case O:
-					element = "O";
+					element = " O ";
 					break;
 				default:
-					element = " ";
+					element = "   ";
 					break;
 			}
 			visualBoard += element;
 			if ((x+1) % lines != 0) {
-				visualBoard += " | ";
+				visualBoard += "|";
 			} else if ((x+1) % getLines() == 0 && (x+1) != board.length) {
-				visualBoard += NEW_LINE;
-				visualBoard += "-----------";
+				visualBoard += NEW_LINE + "-----------" + NEW_LINE;
 			}
 		}
 		return visualBoard;
