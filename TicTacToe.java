@@ -53,6 +53,7 @@ public class TicTacToe{
 			System.out.println(game);
             int input = Integer.parseInt(console.readLine(game.nextCellValue() + " to play: "));
             game.play(input);
+            
 
 			
         }

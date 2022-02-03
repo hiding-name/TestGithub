@@ -223,6 +223,7 @@ public class TicTacToeGame {
 			} else {
 				board[i] = CellValue.O;
 			}
+			setGameState(i);
 			level++;
 		}
 		
