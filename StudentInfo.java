@@ -17,7 +17,7 @@ public class StudentInfo {
 
         System.out.println("************************************************************");
         System.out.println("*                                                          *");
-        System.out.println("*                                                          *");
+        System.out.println("*          Matsuru Hoshi 300228879 ITI1121-A03             *");
         System.out.println("*                                                          *");
         System.out.println("*                                                          *");
         System.out.println("************************************************************");
