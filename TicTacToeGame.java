@@ -245,7 +245,29 @@ public class TicTacToeGame {
   	*/
 
 	private void setGameState(int index){
-
+		//rows 3-3 = 0, 4-3 = 1
+		int r = this.columns-3;
+		
+		if (r >= 0){
+			//first row to last row check
+			for (int j = 0; j<= this.columns; j+= this.lines){
+				//checks increments of 3
+				for (int i = 0; i <= r; i++){
+					//1=2,1=3,2=3
+					if (board[i] == board[i+1] && board[i+1] == board[i+2]){
+						//?
+						if (valueAt(index) == CellValue.O){
+							gameState = GameState.OWIN;
+						}
+						else if(valueAt(index) == CellValue.X){
+							gameState = GameState.XWIN;
+						}
+					}
+				}
+			}
+		}
+		
+		
 		// your code here
 		
 
