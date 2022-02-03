@@ -181,7 +181,7 @@ public class TicTacToeGame {
   	*/
 	public CellValue valueAt(int i) {
 		// your code here
-		if (i < 1 || i > board.length) {
+		if (i < 0 || i > board.length -1) {
 			System.out.println("The value should be between 1 and " + board.length);
 			return null;
 		} else if (board[i] != CellValue.EMPTY) {
@@ -212,7 +212,8 @@ public class TicTacToeGame {
 	public void play(int i) {
 
 		// your code here
-		if (i < 1 || i > board.length) {
+		i--;
+		if (i < 0 || i > board.length -1) {
 			System.out.println("The value should be between 1 and " + board.length);
 		} else if (valueAt(i) != CellValue.EMPTY) {
 			System.out.println("This cell has already been played");
@@ -222,8 +223,8 @@ public class TicTacToeGame {
 			} else {
 				board[i] = CellValue.O;
 			}
-			
 		}
+		level++;
 	}
 
 
