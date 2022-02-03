@@ -209,6 +209,7 @@ public class TicTacToeGame {
 	public void play(int i) {
 
 		// your code here
+		board[i] = valueAt(i);
 
 	}
 
