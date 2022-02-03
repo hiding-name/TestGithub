@@ -56,6 +56,7 @@ public class TicTacToeGame {
 		columns = 3;
 		sizeWin = 3;
 		board = new CellValue[lines*columns];
+		gameState = GameState.PLAYING;
 	}
 
    /**
@@ -73,6 +74,7 @@ public class TicTacToeGame {
 		this.columns = columns;
 		sizeWin = 3;
 		board = new CellValue[lines*columns];
+		gameState = GameState.PLAYING;
 	}
 
    /**
@@ -92,6 +94,7 @@ public class TicTacToeGame {
 		this.columns = columns;
 		this.sizeWin = sizeWin;
 		board = new CellValue[lines*columns];
+		gameState = GameState.PLAYING;
 	}
 
 
@@ -155,6 +158,11 @@ public class TicTacToeGame {
   	*/
 	public CellValue nextCellValue(){
 		// your code here
+		if (getLevel() % 2 == 0) {
+			return CellValue.X;
+		} else {
+			return CellValue.O;
+		}
 
 	}
 
@@ -261,7 +269,7 @@ public class TicTacToeGame {
 			visualBoard += element;
 			if ((x+1) % lines != 0) {
 				visualBoard += " | ";
-			} else if ((x+1) % lines == 0 && (x+1) != board.length) {
+			} else if ((x+1) % getLines() == 0 && (x+1) != board.length) {
 				visualBoard += NEW_LINE;
 				visualBoard += "-----------";
 			}
