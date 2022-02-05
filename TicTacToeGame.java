@@ -181,15 +181,7 @@ public class TicTacToeGame {
   	*/
 	public CellValue valueAt(int i) {
 		// your code here
-		if (i < 0 || i > board.length -1) {
-			System.out.println("The value should be between 1 and " + board.length);
-			return null;
-		} else if (board[i] != CellValue.EMPTY) {
-			System.out.println("This cell has already been played");
-			return null;
-		} else {
-			return board[i];
-		}
+		return board[i];
 	}
 
    /**
@@ -246,15 +238,77 @@ public class TicTacToeGame {
   	*/
 
 	private void setGameState(int index){
+		int width = getLines();
+		int timesAround = 0;
 		// your code here
-		
-
+		for (int x=0;x<width*width;x++) {
+			if (timesAround >= width-2) {
+				break;
+			} else {
+				if (x % width == 0) {
+					timesAround++;
+					for (int i=0;i<width-2;i++) {
+						if (checkThree(x+i)) {
+							if (valueAt(index) == CellValue.X) {
+								gameState = GameState.XWIN;
+							} else if (valueAt(index) == CellValue.O) {
+								gameState = GameState.OWIN;
+							}
+						}
+					} 
+				}
+			}
+		}
 	}
 	/**
-	* A helper method which checks 3x3 boards
-	* @param 
-	* : Array holding the value of each position in a board
+	* A helper method which checks a board by 3x3 sections
+	* @param i
+	* : Index of the top left corner of the 3x3 square
   	*/
+
+	private boolean checkThree(int i) {
+		
+		// width of square
+		int w = getLines();
+
+		// Top Row
+		// top left index, top middle index, and top right index
+		CellValue tL = valueAt(i), tM = valueAt(i+1), tR = valueAt(i+2);
+
+		// Middle Row
+		// middle left index, middle middle index, middle right index
+		CellValue mL = valueAt(i+w), mM = valueAt(i+w+1), mR = valueAt(i+w+2);
+
+		// Bottom Row
+		// bottom left index, bottom middle index, bottom right index
+		CellValue bL = valueAt(i+2*w), bM = valueAt(i+2*w+1), bR = valueAt(i+2*w+2);
+
+		// Empty cell
+		CellValue e = CellValue.EMPTY;
+
+		// lines (left to right)
+		if (tL == tM && tM == tR && tL != e && tM != e && tR != e) {
+			return true;
+		} else if (mL == mM && mM == mR && mL != e && mM != e && mL != e) {
+			return true;
+		} else if (bL == bM && bM == bR && bL != e && bM != e && bR != e) {
+			return true;
+		// diagonals
+		} else if (tL == mM && mM == bR && tL != e && mM != e && bR != e) {
+			return true;
+		} else if (tR == mM && mM == bL && tR != e && mM != e && bL != e) {
+			return true;
+		// columns (up and down)
+		} else if (tL == mL && mL == bL && tL != e && mL != e && bL != e) {
+			return true;
+		} else if (tM == mM && mM == bM && tM != e && mM != e && tM != e) {
+			return true;
+		} else if (tR == mR && mR == bR && tR != e && mR != e && tR != e) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	* A helper method which sets the board to all EMPTY
