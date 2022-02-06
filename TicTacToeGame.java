@@ -204,21 +204,13 @@ public class TicTacToeGame {
 	public void play(int i) {
 
 		// your code here
-		i--;
-		if (i < 0 || i > board.length -1) {
-			System.out.println("The value should be between 1 and " + board.length);
-		} else if (valueAt(i) != CellValue.EMPTY) {
-			System.out.println("This cell has already been played");
+		if (getLevel() % 2 == 0) {
+			board[i] = CellValue.X;
 		} else {
-			if (getLevel() % 2 == 0) {
-				board[i] = CellValue.X;
-			} else {
-				board[i] = CellValue.O;
-			}
-			setGameState(i);
-			level++;
+			board[i] = CellValue.O;
 		}
-		
+		level++;
+		setGameState(i);
 	}
 
 
@@ -238,27 +230,71 @@ public class TicTacToeGame {
   	*/
 
 	private void setGameState(int index){
+		// your code here
+
 		int columns = getColumns();
 		int lines = getLines();
-		// your code here
-		// # of columns
-		
-		for (int a = 0;a<columns-2;a++) {
-			int adder = a;
-			for (int b=0;b<lines-2;b++) {
-				if (checkThree(adder)) {
-					if (valueAt(index) == CellValue.X) {
-						gameState = GameState.XWIN;
-						break;
-					} else if (valueAt(index) == CellValue.O) {
-						gameState = GameState.OWIN;
-						break;
-					}
-				}
-				adder += columns;
-			}
- 		}
+
+		// Wide rectangles with heigh 2
+		if (lines < 3) {
+            for (int j = 0; j < columns; j++) {
+                if (j % columns == 0) {
+                    for (int i = j; i < columns-2; i++) {
+						// Saving valueAt's as variable to reduce clutter
+						CellValue fC = valueAt(i), sC = valueAt(i+1), tC = valueAt(i+2), e = CellValue.EMPTY;
+                        if (fC == sC && sC == tC && fC != e && sC != e && tC != e) {
+                            if (valueAt(index) == CellValue.X && gameState != GameState.OWIN){
+                                gameState = GameState.XWIN;
+                                break;
+                            }
+                            else if (valueAt(index) == CellValue.O && gameState != GameState.XWIN){
+                                gameState = GameState.OWIN;
+                                break;
+                            }
+                        }    
+                    }
+                }
+            }
+		// Tall rectangles with width 2
+        } else if (columns < 3) {
+            for (int j = 0; j < columns; j++) {
+                for (int i = j; i < lines-2; i++) {
+					// Saving valueAt's as variable to reduce clutter
+					CellValue fC = valueAt(i), sC = valueAt(i+columns), tC = valueAt(i+columns*2), e = CellValue.EMPTY;
+                    if (fC == sC && sC == tC && fC != e && sC != e && tC != e) {
+                        if (valueAt(index) == CellValue.X) {
+                            gameState = GameState.XWIN;
+                            break;
+                        } else if (valueAt(index) == CellValue.O) {
+                            gameState = GameState.OWIN;
+                            break;
+                        }
+                    }
+                }
+            }
+		// All rectangles with 3 or more columns or lines
+        } else {
+            for (int a = 0;a<columns-2;a++) {
+                int adder = a;
+                for (int b=0;b<lines-2;b++) {
+                    if (checkThree(adder)) {
+                        if (valueAt(index) == CellValue.X && gameState != GameState.OWIN) {
+                            gameState = GameState.XWIN;
+                            break;
+                        } else if (valueAt(index) == CellValue.O && gameState != GameState.XWIN) {
+                            gameState = GameState.OWIN;
+                            break;
+                        }
+                    }
+                    adder += columns;
+                }
+            }
+		}
+		if (getLevel() == board.length && gameState != GameState.XWIN && gameState != GameState.OWIN) {
+			gameState = GameState.DRAW;
+		}
 	}
+
 	/**
 	* A helper method which checks a board by 3x3 sections
 	* @param i

@@ -52,7 +52,16 @@ public class TicTacToe{
 			// your code here
 			System.out.println(game);
             int input = Integer.parseInt(console.readLine(game.nextCellValue() + " to play: "));
-            game.play(input);
+            
+            input--;
+            int  boardSize = game.getColumns()*game.getLines();
+            if (input < 0 || input > boardSize -1) {
+                System.out.println("The value should be between 1 and " + boardSize);
+            } else if (game.valueAt(input) != CellValue.EMPTY) {
+                System.out.println("This cell has already been played");
+            } else {
+                game.play(input);
+            }
             
 
 			
