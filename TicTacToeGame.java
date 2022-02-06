@@ -242,6 +242,7 @@ public class TicTacToeGame {
 		int lines = getLines();
 		// your code here
 		// # of columns
+		
 		for (int a = 0;a<columns-2;a++) {
 			int adder = a;
 			for (int b=0;b<lines-2;b++) {
@@ -267,7 +268,7 @@ public class TicTacToeGame {
 	private boolean checkThree(int i) {
 		
 		// width of square
-		int w = getLines();
+		int w = getColumns();
 
 		// Top Row
 		// top left index, top middle index, and top right index
