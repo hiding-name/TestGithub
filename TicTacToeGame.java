@@ -238,23 +238,25 @@ public class TicTacToeGame {
   	*/
 
 	private void setGameState(int index){
-		int width = getLines();
+		int columns = getColumns();
+		int lines = getLines();
 		// your code here
-		for (int x=0;x<width*(width-2);x++) {
-			if (x % width == 0) {
-				for (int i=0;i<width-2;i++) {
-					if (checkThree(x+i)) {
-						if (valueAt(index) == CellValue.X) {
-							gameState = GameState.XWIN;
-							break;
-						} else if (valueAt(index) == CellValue.O) {
-							gameState = GameState.OWIN;
-							break;
-						}
+		// # of columns
+		for (int a = 0;a<columns-2;a++) {
+			int adder = a;
+			for (int b=0;b<lines-2;b++) {
+				if (checkThree(adder)) {
+					if (valueAt(index) == CellValue.X) {
+						gameState = GameState.XWIN;
+						break;
+					} else if (valueAt(index) == CellValue.O) {
+						gameState = GameState.OWIN;
+						break;
 					}
-				} 
+				}
+				adder += columns;
 			}
-		}
+ 		}
 	}
 	/**
 	* A helper method which checks a board by 3x3 sections
@@ -350,10 +352,10 @@ public class TicTacToeGame {
 					break;
 			}
 			visualBoard += element;
-			if ((x+1) % lines != 0) {
+			if ((x+1) % getColumns() != 0) {
 				visualBoard += "|";
-			} else if ((x+1) % getLines() == 0 && (x+1) != board.length) {
-				visualBoard += NEW_LINE + "-----------" + NEW_LINE;
+			} else if ((x+1) % getColumns() == 0 && (x+1) != board.length) {
+				visualBoard += NEW_LINE + "---" + "----".repeat(getColumns()-1) + NEW_LINE;
 			}
 		}
 		return visualBoard;
