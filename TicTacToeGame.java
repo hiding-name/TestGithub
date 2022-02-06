@@ -239,24 +239,20 @@ public class TicTacToeGame {
 
 	private void setGameState(int index){
 		int width = getLines();
-		int timesAround = 0;
 		// your code here
-		for (int x=0;x<width*width;x++) {
-			if (timesAround >= width-2) {
-				break;
-			} else {
-				if (x % width == 0) {
-					timesAround++;
-					for (int i=0;i<width-2;i++) {
-						if (checkThree(x+i)) {
-							if (valueAt(index) == CellValue.X) {
-								gameState = GameState.XWIN;
-							} else if (valueAt(index) == CellValue.O) {
-								gameState = GameState.OWIN;
-							}
+		for (int x=0;x<width*(width-2);x++) {
+			if (x % width == 0) {
+				for (int i=0;i<width-2;i++) {
+					if (checkThree(x+i)) {
+						if (valueAt(index) == CellValue.X) {
+							gameState = GameState.XWIN;
+							break;
+						} else if (valueAt(index) == CellValue.O) {
+							gameState = GameState.OWIN;
+							break;
 						}
-					} 
-				}
+					}
+				} 
 			}
 		}
 	}
