@@ -62,14 +62,10 @@ public class TicTacToe{
             } else {
                 game.play(input);
             }
-            
-
-			
         }
+        
         System.out.println(game);
         System.out.println("Result: " + game.getGameState());
- 
-
     }
 
 }
